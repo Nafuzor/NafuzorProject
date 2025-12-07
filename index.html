@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡️ Стабильный QR-генератор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+</head>
+<body class="dark-theme">
+    <header>
+        <h1>⚡️ Стабильный QR-генератор</h1>
+    </header>
+
+    <main class="container">
+        <section class="qr-generator-section glassmorphism">
+            <h2>Создать QR-код</h2>
+            <div class="input-group">
+                <input type="url" id="urlInput" placeholder="Введите URL-адрес..." class="glassmorphism" required>
+                <button id="generateBtn" class="glassmorphism">Сгенерировать QR</button>
+            </div>
+            
+            <div id="qrCodeContainer" class="qr-output">
+                <canvas id="qrCanvas"></canvas>
+                <div id="logoContainer">
+                    <img id="qrLogo" src="" alt="Логотип" class="hidden" />
+                </div>
+                <p id="qrPlaceholder">Начните с ввода ссылки и нажмите "Сгенерировать QR".</p>
+            </div>
+            
+            <button id="downloadBtn" class="glassmorphism hidden" disabled>Скачать QR (PNG)</button>
+        </section>
+
+        <aside class="settings-panel glassmorphism">
+            <h2>⚙️ Настройки Дизайна</h2>
+            
+            <div class="settings-group">
+                <h3>Дизайн QR-кода</h3>
+                
+                <div class="setting-item">
+                    <label for="qrColor1">Цвет Точек QR-кода</label>
+                    <input type="color" id="qrColor1" value="#005e8d">
+                </div>
+                
+                <div class="setting-item">
+                    <label for="qrBgColor">Цвет фона QR-кода</label>
+                    <input type="color" id="qrBgColor" value="#ffffff">
+                    <input type="checkbox" id="qrTransparentBg"> Сделать фон прозрачным
+                </div>
+
+                <div class="setting-item">
+                    <label for="qrSize">Размер QR-кода (<span id="qrSizeValue">250</span>px)</label>
+                    <input type="range" id="qrSize" min="150" max="600" step="10" value="250">
+                </div>
+                
+                <div class="setting-item">
+                    <label for="qrQuietZone">Отступ (Quiet Zone) (<span id="qrQuietZoneValue">4</span> пикселя)</label>
+                    <input type="range" id="qrQuietZone" min="0" max="10" step="1" value="4">
+                </div>
+                
+                <div class="setting-item">
+                    <label for="qrPixelRounding">Скругление точек (<span id="qrRoundingValue">0</span>%)</label>
+                    <input type="range" id="qrPixelRounding" min="0" max="50" step="5" value="0">
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="settings-group">
+                <h3>Логотип (центр)</h3>
+                
+                <div class="setting-item">
+                    <label for="logoUpload">Загрузить Логотип</label>
+                    <input type="file" id="logoUpload" accept="image/*">
+                </div>
+                <div class="setting-item">
+                    <label for="logoSize">Размер Логотипа (<span id="logoSizeValue">20</span>%)</label>
+                    <input type="range" id="logoSize" min="10" max="40" step="5" value="20">
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="settings-group">
+                <h3>Интерфейс и Утилиты</h3>
+                
+                <div class="setting-item">
+                    <label for="themeSelect">Цветовая тема</label>
+                    <select id="themeSelect">
+                        <option value="dark">Тёмная</option>
+                        <option value="light">Светлая</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="accentColor">Цвет акцента</label>
+                    <input type="color" id="accentColor" value="#00ffff">
+                </div>
+                
+                <div class="setting-item">
+                    <label for="bgOpacity">Прозрачность элементов</label>
+                    <input type="range" id="bgOpacity" min="0.1" max="0.5" step="0.05" value="0.3">
+                </div>
+                
+                <button id="saveSettingsBtn" class="glassmorphism">Сохранить Настройки</button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
